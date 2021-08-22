@@ -12,8 +12,8 @@ function onReload()
     end
 end
 
-function addHotkey(name, hotkey, fn)
-    hotkeys[name] = createHotkey(fn, hotkey)
+function addHotkey(name, fn, hotkey1, hotkey2)
+    hotkeys[name] = createHotkey(fn, hotkey1, hotkey2)
 end
 
 function addTimer(name, interval, fn)
@@ -46,18 +46,31 @@ function getPosition()
     }
 end
 
-local savedPos = getPosition()
+local savedPositions = {}
+for i = 1, 9 do
+    local iStr = tostring(i)
+    local hkey = loadstring("return VK_NUMPAD" .. iStr)()
+    savedPositions[i] = getPosition()
+    addHotkey("load" .. iStr, function()
+        speak("position" .. iStr)
+        setPosition(savedPositions[i])
+    end, hkey, nil)
+    addHotkey("set" .. iStr, function()
+        speak("set position" .. iStr)
+        savedPositions[i] =  getPosition()
+    end, VK_NUMPAD0, hkey)
 
-addHotkey("save", VK_NUMPAD0, function()
-    speak("Save position.")
-    savedPos =  getPosition()
-end)
+end
 
-addHotkey("load", VK_NUMPAD1, function()
-    speak("Load position.")
-    setPosition(savedPos)
-end)
+-- local savedPos = getPosition()
+-- addHotkey("save", VK_NUMPAD0, function()
+--     speak("Save position.")
+--     savedPos =  getPosition()
+-- end)
+-- addHotkey("load", VK_NUMPAD1, function()
+--     speak("Load position.")
+--     setPosition(savedPos)
+-- end)
 
 speak("script reloaded")
-
 return onReload
