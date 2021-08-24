@@ -2,19 +2,11 @@
 <CheatTable CheatEngineTableVersion="34">
   <CheatEntries>
     <CheatEntry>
-      <ID>0</ID>
+      <ID>6413</ID>
       <Description>"Sen"</Description>
-      <LastState Value="4879" RealAddress="7FF49E7CB7AC"/>
-      <ShowAsSigned>0</ShowAsSigned>
+      <LastState Value="99999" RealAddress="7FF49E7CB7BC"/>
       <VariableType>4 Bytes</VariableType>
-      <Address>7FF49E7CB7AC</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>6</ID>
-      <Description>"Heals"</Description>
-      <LastState Value="9" RealAddress="7FF49E7CC278"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>7FF49E7CC278</Address>
+      <Address>7FF49E7CB7BC</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>7</ID>
@@ -98,7 +90,7 @@ sekiro.exe+BD5FAF: F3 0F 58 CF        - addss xmm1,xmm7
         <CheatEntry>
           <ID>3</ID>
           <Description>"playerPtr"</Description>
-          <LastState Value="42A8BE18" RealAddress="7FF4A2B4CAD0"/>
+          <LastState Value="42A8BE18" RealAddress="7FF4FCB1B200"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -107,7 +99,7 @@ sekiro.exe+BD5FAF: F3 0F 58 CF        - addss xmm1,xmm7
             <CheatEntry>
               <ID>4</ID>
               <Description>"playerHP"</Description>
-              <LastState Value="800" RealAddress="7FF4A2B4CC00"/>
+              <LastState Value="1120" RealAddress="7FF4FCB1B330"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>2 Bytes</VariableType>
               <Address>+130</Address>
@@ -115,7 +107,7 @@ sekiro.exe+BD5FAF: F3 0F 58 CF        - addss xmm1,xmm7
             <CheatEntry>
               <ID>5</ID>
               <Description>"playerPosture"</Description>
-              <LastState Value="300" RealAddress="7FF4A2B4CC18"/>
+              <LastState Value="420" RealAddress="7FF4FCB1B348"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>2 Bytes</VariableType>
               <Address>+148</Address>
@@ -202,7 +194,7 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
         <CheatEntry>
           <ID>6405</ID>
           <Description>"playerPosPtr"</Description>
-          <LastState Value="41A0031C" RealAddress="7FF4A2B4E6C0"/>
+          <LastState Value="42F6E968" RealAddress="7FF4A564D890"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -211,7 +203,7 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
             <CheatEntry>
               <ID>6402</ID>
               <Description>"playerX"</Description>
-              <LastState Value="20.00151825" RealAddress="7FF4A2B4E6C0"/>
+              <LastState Value="123.4558716" RealAddress="7FF4A564D890"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -219,7 +211,7 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
             <CheatEntry>
               <ID>6403</ID>
               <Description>"playerY"</Description>
-              <LastState Value="-766.6305542" RealAddress="7FF4A2B4E6C4"/>
+              <LastState Value="-47.22359848" RealAddress="7FF4A564D894"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+04</Address>
@@ -227,7 +219,7 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
             <CheatEntry>
               <ID>6404</ID>
               <Description>"playerZ"</Description>
-              <LastState Value="406.1268921" RealAddress="7FF4A2B4E6C8"/>
+              <LastState Value="-189.8211212" RealAddress="7FF4A564D898"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+08</Address>
@@ -236,54 +228,458 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
+    <CheatEntry>
+      <ID>6409</ID>
+      <Description>"Infinite Items"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sekiro.exe
+  Version: 
+  Date   : 2021-08-22
+  Author : Kody
+
+  This script does blah blah blah
+}
+
+define(address,"sekiro.exe"+C3CF50)
+define(bytes,89 51 08 C3 CC CC CC CC CC CC CC CC CC)
+
+[ENABLE]
+
+label(return)
+
+assert(address,bytes)
+
+address:
+  cmp [rcx+08],edx // 3b
+  jg return        // 6b
+  mov [rcx+08],edx // 3b
+return:
+  ret              // 1b  -&gt; 13b total
+
+[DISABLE]
+
+address:
+  db bytes
+
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6410</ID>
+      <Description>"Easy Kill"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sekiro.exe
+  Version: 
+  Date   : 2021-08-23
+  Author : Kody
+
+  This script does blah blah blah
+}
+
+define(address,"sekiro.exe"+BD651E)
+define(bytes,89 83 30 01 00 00)
+globalalloc(playerPtr, 4)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"sekiro.exe"+BD651E)
+
+label(code)
+label(return)
+label(default)
+
+newmem:
+
+code:
+  cmp rbx, [playerPtr]
+  je default
+
+  push ecx
+  push edx
+    mov ecx, eax
+    mov edx,[rbx+00000130]
+    sub edx, ecx
+    cmp edx, 05
+  pop edx
+  pop ecx
+
+  jl default
+
+  mov eax, 00
+
+default:
+  mov [rbx+00000130],eax
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov [rbx+00000130],eax
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sekiro.exe+BD651E
+
+sekiro.exe+BD64F7: 48 81 C1 34 01 00 00           - add rcx,00000134
+sekiro.exe+BD64FE: C7 44 24 30 00 00 00 00        - mov [rsp+30],00000000
+sekiro.exe+BD6506: 85 D2                          - test edx,edx
+sekiro.exe+BD6508: 79 07                          - jns sekiro.exe+BD6511
+sekiro.exe+BD650A: 48 8D 44 24 30                 - lea rax,[rsp+30]
+sekiro.exe+BD650F: EB 0B                          - jmp sekiro.exe+BD651C
+sekiro.exe+BD6511: 3B 11                          - cmp edx,[rcx]
+sekiro.exe+BD6513: 48 8D 44 24 38                 - lea rax,[rsp+38]
+sekiro.exe+BD6518: 48 0F 4F C1                    - cmovg rax,rcx
+sekiro.exe+BD651C: 8B 00                          - mov eax,[rax]
+// ---------- INJECTING HERE ----------
+sekiro.exe+BD651E: 89 83 30 01 00 00              - mov [rbx+00000130],eax
+// ---------- DONE INJECTING  ----------
+sekiro.exe+BD6524: 85 C0                          - test eax,eax
+sekiro.exe+BD6526: 7F 1A                          - jg sekiro.exe+BD6542
+sekiro.exe+BD6528: 48 8B CB                       - mov rcx,rbx
+sekiro.exe+BD652B: E8 C0 F8 FF FF                 - call sekiro.exe+BD5DF0
+sekiro.exe+BD6530: 84 C0                          - test al,al
+sekiro.exe+BD6532: 74 0E                          - je sekiro.exe+BD6542
+sekiro.exe+BD6534: 85 FF                          - test edi,edi
+sekiro.exe+BD6536: 7E 0A                          - jle sekiro.exe+BD6542
+sekiro.exe+BD6538: C7 83 30 01 00 00 01 00 00 00  - mov [rbx+00000130],00000001
+sekiro.exe+BD6542: 48 8B 5C 24 40                 - mov rbx,[rsp+40]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6416</ID>
+      <Description>"Item Count Read Experiments"</Description>
+      <Options moAlwaysHideChildren="1" moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>6412</ID>
+          <Description>"Read Items Counts as 9999 #1"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sekiro.exe
+  Version: 
+  Date   : 2021-08-23
+  Author : Kody
+
+  This script does blah blah blah
+}
+
+define(address,"sekiro.exe"+C3CD30)
+define(bytes,8B 41 08 C3 CC)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"sekiro.exe"+C3CD30)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov eax,#9999
+  ret 
+  int 3 
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov eax,[rcx+08]
+  // ret 
+  // int 3 
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sekiro.exe+C3CD30
+
+sekiro.exe+C3CD23: 89 02     - mov [rdx],eax
+sekiro.exe+C3CD25: 48 8B C2  - mov rax,rdx
+sekiro.exe+C3CD28: C3        - ret 
+sekiro.exe+C3CD29: CC        - int 3 
+sekiro.exe+C3CD2A: CC        - int 3 
+sekiro.exe+C3CD2B: CC        - int 3 
+sekiro.exe+C3CD2C: CC        - int 3 
+sekiro.exe+C3CD2D: CC        - int 3 
+sekiro.exe+C3CD2E: CC        - int 3 
+sekiro.exe+C3CD2F: CC        - int 3 
+// ---------- INJECTING HERE ----------
+sekiro.exe+C3CD30: 8B 41 08  - mov eax,[rcx+08]
+// ---------- DONE INJECTING  ----------
+sekiro.exe+C3CD33: C3        - ret 
+sekiro.exe+C3CD34: CC        - int 3 
+sekiro.exe+C3CD35: CC        - int 3 
+sekiro.exe+C3CD36: CC        - int 3 
+sekiro.exe+C3CD37: CC        - int 3 
+sekiro.exe+C3CD38: CC        - int 3 
+sekiro.exe+C3CD39: CC        - int 3 
+sekiro.exe+C3CD3A: CC        - int 3 
+sekiro.exe+C3CD3B: CC        - int 3 
+sekiro.exe+C3CD3C: CC        - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6414</ID>
+          <Description>"Read Items Counts as 9999 #2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sekiro.exe
+  Version: 
+  Date   : 2021-08-23
+  Author : Kody
+
+  This script does blah blah blah
+}
+
+define(address,"sekiro.exe"+7C33D1)
+define(bytes,0F 11 48 F0 48 83 E9 01)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"sekiro.exe"+7C33D1)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movups [rax-10],xmm1
+  mov [rax-14], #9999
+  sub rcx,01
+  jmp return
+
+address:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // movups [rax-10],xmm1
+  // sub rcx,01
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sekiro.exe+7C33D1
+
+sekiro.exe+7C33A4: 0F 11 40 A0           - movups [rax-60],xmm0
+sekiro.exe+7C33A8: 41 0F 10 48 B0        - movups xmm1,[r8-50]
+sekiro.exe+7C33AD: 0F 11 48 B0           - movups [rax-50],xmm1
+sekiro.exe+7C33B1: 41 0F 10 40 C0        - movups xmm0,[r8-40]
+sekiro.exe+7C33B6: 0F 11 40 C0           - movups [rax-40],xmm0
+sekiro.exe+7C33BA: 41 0F 10 48 D0        - movups xmm1,[r8-30]
+sekiro.exe+7C33BF: 0F 11 48 D0           - movups [rax-30],xmm1
+sekiro.exe+7C33C3: 41 0F 10 40 E0        - movups xmm0,[r8-20]
+sekiro.exe+7C33C8: 0F 11 40 E0           - movups [rax-20],xmm0
+sekiro.exe+7C33CC: 41 0F 10 48 F0        - movups xmm1,[r8-10]
+// ---------- INJECTING HERE ----------
+sekiro.exe+7C33D1: 0F 11 48 F0           - movups [rax-10],xmm1
+// ---------- DONE INJECTING  ----------
+sekiro.exe+7C33D5: 48 83 E9 01           - sub rcx,01
+sekiro.exe+7C33D9: 75 A5                 - jne sekiro.exe+7C3380
+sekiro.exe+7C33DB: 48 8B 83 90 01 00 00  - mov rax,[rbx+00000190]
+sekiro.exe+7C33E2: 48 85 C0              - test rax,rax
+sekiro.exe+7C33E5: 74 65                 - je sekiro.exe+7C344C
+sekiro.exe+7C33E7: 48 8D 8F 38 06 00 00  - lea rcx,[rdi+00000638]
+sekiro.exe+7C33EE: BA 20 00 00 00        - mov edx,00000020
+sekiro.exe+7C33F3: 48 8D 89 80 00 00 00  - lea rcx,[rcx+00000080]
+sekiro.exe+7C33FA: 0F 10 00              - movups xmm0,[rax]
+sekiro.exe+7C33FD: 48 8D 80 80 00 00 00  - lea rax,[rax+00000080]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6415</ID>
+          <Description>"Read Items Counts as 9999 #3"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sekiro.exe
+  Version: 
+  Date   : 2021-08-23
+  Author : Kody
+
+  This script does blah blah blah
+}
+
+define(address,"sekiro.exe"+66DA00)
+define(bytes,8B 41 7C C3 CC)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"sekiro.exe"+66DA00)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov eax,#9999
+  ret 
+  int 3 
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov eax,[rcx+7C]
+  // ret 
+  // int 3 
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sekiro.exe+66DA00
+
+sekiro.exe+66D9F6: CC        - int 3 
+sekiro.exe+66D9F7: CC        - int 3 
+sekiro.exe+66D9F8: CC        - int 3 
+sekiro.exe+66D9F9: CC        - int 3 
+sekiro.exe+66D9FA: CC        - int 3 
+sekiro.exe+66D9FB: CC        - int 3 
+sekiro.exe+66D9FC: CC        - int 3 
+sekiro.exe+66D9FD: CC        - int 3 
+sekiro.exe+66D9FE: CC        - int 3 
+sekiro.exe+66D9FF: CC        - int 3 
+// ---------- INJECTING HERE ----------
+sekiro.exe+66DA00: 8B 41 7C  - mov eax,[rcx+7C]
+// ---------- DONE INJECTING  ----------
+sekiro.exe+66DA03: C3        - ret 
+sekiro.exe+66DA04: CC        - int 3 
+sekiro.exe+66DA05: CC        - int 3 
+sekiro.exe+66DA06: CC        - int 3 
+sekiro.exe+66DA07: CC        - int 3 
+sekiro.exe+66DA08: CC        - int 3 
+sekiro.exe+66DA09: CC        - int 3 
+sekiro.exe+66DA0A: CC        - int 3 
+sekiro.exe+66DA0B: CC        - int 3 
+sekiro.exe+66DA0C: CC        - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6418</ID>
+      <Description>"Scrap Iron"</Description>
+      <LastState Value="99" RealAddress="7FF49E7CC328"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>7FF49E7CC328</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6419</ID>
+      <Description>"Black Powder"</Description>
+      <LastState Value="99" RealAddress="7FF49E7CC2E8"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>7FF49E7CC2E8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6420</ID>
+      <Description>"Upgrade Prosthetic, No Item Req"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sekiro.exe
+  Version: 
+  Date   : 2021-08-24
+  Author : Kody
+
+  This script does blah blah blah
+}
+
+define(address,"sekiro.exe"+A9B17D)
+define(bytes,45 3B EF 7D 0D)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"sekiro.exe"+A9B17D)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  cmp r15d,r15d
+  jnl sekiro.exe+A9B18F
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // cmp r13d,r15d
+  // jnl sekiro.exe+A9B18F
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sekiro.exe+A9B17D
+
+sekiro.exe+A9B160: 48 85 C9           - test rcx,rcx
+sekiro.exe+A9B163: 74 18              - je sekiro.exe+A9B17D
+sekiro.exe+A9B165: 48 8D 54 24 28     - lea rdx,[rsp+28]
+sekiro.exe+A9B16A: E8 71 26 D0 FF     - call sekiro.exe+79D7E0
+sekiro.exe+A9B16F: 85 C0              - test eax,eax
+sekiro.exe+A9B171: 0F 99 C0           - setns al
+sekiro.exe+A9B174: 84 C0              - test al,al
+sekiro.exe+A9B176: 74 05              - je sekiro.exe+A9B17D
+sekiro.exe+A9B178: 40 88 3B           - mov [rbx],dil
+sekiro.exe+A9B17B: EB 15              - jmp sekiro.exe+A9B192
+// ---------- INJECTING HERE ----------
+sekiro.exe+A9B17D: 45 3B EF           - cmp r13d,r15d
+// ---------- DONE INJECTING  ----------
+sekiro.exe+A9B180: 7D 0D              - jnl sekiro.exe+A9B18F
+sekiro.exe+A9B182: 45 32 F6           - xor r14l,r14l
+sekiro.exe+A9B185: C6 44 24 21 01     - mov byte ptr [rsp+21],01
+sekiro.exe+A9B18A: C6 03 02           - mov byte ptr [rbx],02
+sekiro.exe+A9B18D: EB 03              - jmp sekiro.exe+A9B192
+sekiro.exe+A9B18F: C6 03 01           - mov byte ptr [rbx],01
+sekiro.exe+A9B192: FF C6              - inc esi
+sekiro.exe+A9B194: 48 83 C3 0C        - add rbx,0C
+sekiro.exe+A9B198: 83 FE 05           - cmp esi,05
+sekiro.exe+A9B19B: 0F 8C 5F FF FF FF  - jl sekiro.exe+A9B100
+}
+</AssemblerScript>
+    </CheatEntry>
   </CheatEntries>
   <CheatCodes>
-    <CodeEntry Color="20000000">
-      <Description>Read Sen</Description>
-      <AddressString>sekiro.exe+66DA63</AddressString>
-      <Before>
-        <Byte>0F</Byte>
-        <Byte>4F</Byte>
-        <Byte>C0</Byte>
-        <Byte>8B</Byte>
-        <Byte>00</Byte>
-      </Before>
-      <Actual>
-        <Byte>89</Byte>
-        <Byte>41</Byte>
-        <Byte>7C</Byte>
-      </Actual>
-      <After>
-        <Byte>C3</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry Color="20000000">
-      <Description>Read Item Count</Description>
-      <AddressString>sekiro.exe+C3CD30</AddressString>
-      <Before>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-      </Before>
-      <Actual>
-        <Byte>8B</Byte>
-        <Byte>41</Byte>
-        <Byte>08</Byte>
-      </Actual>
-      <After>
-        <Byte>C3</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-      </After>
-    </CodeEntry>
     <CodeEntry Color="20000000">
       <Description>Read Health</Description>
       <AddressString>sekiro.exe+BD5F84</AddressString>
@@ -334,29 +730,6 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
         <Byte>7F</Byte>
         <Byte>1A</Byte>
         <Byte>48</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry Color="20000000">
-      <Description>Decrease Consumable</Description>
-      <AddressString>sekiro.exe+C3CF50</AddressString>
-      <Before>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-      </Before>
-      <Actual>
-        <Byte>89</Byte>
-        <Byte>51</Byte>
-        <Byte>08</Byte>
-      </Actual>
-      <After>
-        <Byte>C3</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
       </After>
     </CodeEntry>
     <CodeEntry Color="20000000">
@@ -541,7 +914,7 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
         <Byte>00</Byte>
       </After>
     </CodeEntry>
-    <CodeEntry Color="80000008">
+    <CodeEntry Color="20000000">
       <Description>Read Entity X</Description>
       <AddressString>sekiro.exe+BBFC34</AddressString>
       <Before>
@@ -568,15 +941,229 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
         <Byte>C3</Byte>
       </After>
     </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Write Stealth Copy</Description>
+      <AddressString>sekiro.exe+6201AF</AddressString>
+      <Before>
+        <Byte>24</Byte>
+        <Byte>B0</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>9F</Byte>
+        <Byte>74</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+        <Byte>56</Byte>
+        <Byte>04</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Write Stealth Call</Description>
+      <AddressString>sekiro.exe+608B55</AddressString>
+      <Before>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>4E</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>FF</Byte>
+        <Byte>50</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+        <Byte>8F</Byte>
+        <Byte>50</Byte>
+        <Byte>7B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Read Sen</Description>
+      <AddressString>sekiro.exe+66DA63</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>4F</Byte>
+        <Byte>C0</Byte>
+        <Byte>8B</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+        <Byte>7C</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Read Sen 2</Description>
+      <AddressString>sekiro.exe+66DA00</AddressString>
+      <Before>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>41</Byte>
+        <Byte>7C</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Read Item Count</Description>
+      <AddressString>sekiro.exe+C3CD30</AddressString>
+      <Before>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>41</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Set Item Count</Description>
+      <AddressString>sekiro.exe+C3CF50</AddressString>
+      <Before>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>51</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Call Set Item Count</Description>
+      <AddressString>sekiro.exe+7A84BB</AddressString>
+      <Before>
+        <Byte>8B</Byte>
+        <Byte>D5</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>CF</Byte>
+      </Before>
+      <Actual>
+        <Byte>E8</Byte>
+        <Byte>90</Byte>
+        <Byte>4A</Byte>
+        <Byte>49</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+        <Byte>4C</Byte>
+        <Byte>24</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>GUI Read Item Count</Description>
+      <AddressString>sekiro.exe+7C33C3</AddressString>
+      <Before>
+        <Byte>D0</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>48</Byte>
+        <Byte>D0</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>40</Byte>
+        <Byte>E0</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>40</Byte>
+        <Byte>E0</Byte>
+        <Byte>41</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Check Enough Items?</Description>
+      <AddressString>sekiro.exe+A9B17D</AddressString>
+      <Before>
+        <Byte>40</Byte>
+        <Byte>88</Byte>
+        <Byte>3B</Byte>
+        <Byte>EB</Byte>
+        <Byte>15</Byte>
+      </Before>
+      <Actual>
+        <Byte>45</Byte>
+        <Byte>3B</Byte>
+        <Byte>EF</Byte>
+      </Actual>
+      <After>
+        <Byte>7D</Byte>
+        <Byte>0D</Byte>
+        <Byte>45</Byte>
+        <Byte>32</Byte>
+        <Byte>F6</Byte>
+      </After>
+    </CodeEntry>
   </CheatCodes>
   <UserdefinedSymbols>
     <SymbolEntry>
       <Name>playerPtr</Name>
-      <Address>09C30010</Address>
+      <Address>00760000</Address>
     </SymbolEntry>
     <SymbolEntry>
       <Name>playerPosPtr</Name>
-      <Address>09C30000</Address>
+      <Address>00760010</Address>
     </SymbolEntry>
   </UserdefinedSymbols>
   <Structures StructVersion="2">
@@ -11641,4 +12228,11 @@ sekiro.exe+BC5C7A: 45 0F 57 ED              - xorps xmm13,xmm13
   <LuaScript>if onReload ~= nil then onReload() end
 onReload = dofile("main.lua")
 </LuaScript>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>"sekiro.exe"+6201AF</Address>
+      <Comment>***
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
 </CheatTable>
