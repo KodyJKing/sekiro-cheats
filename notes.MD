@@ -1,0 +1,6 @@
+- positionContainer is of type ChrPhysicsModule it's under Chr.Modules.ChrPhysicsModule or ChrDataContainerL2[0x1FF8][0x68]
+- ChrDataContainerL2 might be the base object for an entity.
+- It now seems very likely that what I was calling ChrDataContainerL2 is of type EnemyIns.
+- To get from TargetingSystem to ChrDataModule, follow TargetingSystem.TargetingSystemOwner.EnemyIns.Modules.ChrDataModule or TargetingSystem[0x8][0x10][0x1FF8][0x18]
+- When the byte at TargetingSystem[0x174] == 2, the enemy has fully detected the player.
+- Health is stored at ChrDataModule[0x130]
